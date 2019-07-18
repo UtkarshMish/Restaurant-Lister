@@ -8,12 +8,12 @@ class restaurantdesc extends Component {
     this.setState({ restaurantData: restaurants });
   }
   render() {
-    let restaurantData = this.state.restaurantData;
+    const { restaurantData } = this.state;
 
     return (
       <React.Fragment>
         <main className="container">
-          <div className="cards">
+          <div className="cards ui">
             <div className="card ui fluid">
               <div className="image">
                 <img

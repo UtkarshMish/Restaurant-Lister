@@ -38,6 +38,26 @@ class Home extends Component {
       this.state.currentPage,
       pageSize
     );
+    if (this.state.isLoading === true) {
+      return (
+        <div className="ui segment " style={{ background: "inherit" }}>
+          <div
+            className="ui active dimmer "
+            style={{
+              position: "sticky",
+              height: "40em",
+              top: "0",
+              left: "0",
+              bottom: "0",
+              right: "0",
+              background: "inherit"
+            }}
+          >
+            <div className="ui indeterminate text loader ">Preparing Files</div>
+          </div>
+        </div>
+      );
+    }
     const restaurantLocationData = paginate(
       restaurantsLocation,
       this.state.currentPage,
@@ -49,7 +69,7 @@ class Home extends Component {
           restaurants={restaurantData}
           restaurantsLocation={restaurantLocationData}
         />
-        <h4 class="ui horizontal divider header" />
+        <p class="ui horizontal divider header" />
 
         <div className="ui centered grid ">
           <Pagination
