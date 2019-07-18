@@ -1,29 +1,40 @@
 import React from "react";
-import ImagLst from "./imageList";
+import Header from "./Header";
 import Footer from "./Footer";
-const axios = require("axios");
-// let restr = [];
+import restaurantdesc from "./restaurantdesc";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "./home";
 
 class App extends React.Component {
-  state = {
-    restaurants: [],
-    isLoading: true
-  };
-
-  getRestaurants = () => axios.get("/api/restaurantLocation");
-
-  async componentDidMount() {
-    const response = await this.getRestaurants();
-    this.setState({ restaurants: response.data });
-  }
-
   render() {
-    const { restaurants } = this.state;
     return (
-      <div className="ui container">
-        <ImagLst restaurants={restaurants} />
+      <React.Fragment>
+        <BrowserRouter>
+          <Header />
+          <div className="ui container">
+            <React.Fragment>
+              <Switch>
+                <Route path="/" component={Home} className=" item" exact />
+
+                <Route
+                  path="/"
+                  component={Home}
+                  className="item right active"
+                  exact
+                />
+
+                <Route
+                  path="/restaurantdesc"
+                  component={restaurantdesc}
+                  className=" item"
+                />
+              </Switch>
+            </React.Fragment>
+          </div>
+        </BrowserRouter>
+
         <Footer />
-      </div>
+      </React.Fragment>
     );
   }
 }
