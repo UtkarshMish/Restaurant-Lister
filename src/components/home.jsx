@@ -3,12 +3,17 @@ import ImagLst from "./imageList";
 import axios from "axios";
 import Pagination from "../components/common/pagination";
 import { paginate } from "./utils/paginate";
+import CuisinesList from "./common/cuisinesList";
+import _ from "lodash";
 class Home extends Component {
   state = {
     restaurants: [],
     restaurantsLocation: [],
-    pageSize: 9,
+    sortRest: [],
+    pageSize: 15,
     currentPage: 1,
+    Cuisines: [],
+    selectedItem: "",
     isLoading: true
   };
   handlePageChange = page => {
@@ -19,25 +24,42 @@ class Home extends Component {
   };
   getRestaurants = () => axios.get("/api/restaurants");
   getRestaurantsLocation = () => axios.get("/api/restaurantLocation");
+  getCuisines = res => {
+    return res.map(restData => {
+      return restData["Cuisines"].split(", ");
+    });
+  };
 
   async componentDidMount() {
     const response = await this.getRestaurants();
     const responseloc = await this.getRestaurantsLocation();
+    let { Cuisines } = this.state;
+    Cuisines = await this.getCuisines(response.data);
+    Cuisines = Cuisines.flat(1);
+
+    Cuisines = _.uniq(Cuisines);
+    Cuisines.splice(Cuisines.indexOf(""), 1);
     this.setState({
       restaurants: response.data,
       restaurantsLocation: responseloc.data,
+      sortRest: response.data,
+      Cuisines: Cuisines,
       isLoading: false
     });
   }
+  handleItem = item => {
+    document.documentElement.scrollTop = 0;
+    let { restaurants, sortRest } = this.state;
+    sortRest = restaurants.filter(restr => restr["Cuisines"].search(item) >= 0);
+    console.log(sortRest);
+
+    this.setState({ selectedItem: item, sortRest: sortRest, currentPage: 1 });
+  };
 
   render() {
-    const { restaurants, pageSize } = this.state;
+    const { pageSize, sortRest } = this.state;
     const { restaurantsLocation } = this.state;
-    const restaurantData = paginate(
-      restaurants,
-      this.state.currentPage,
-      pageSize
-    );
+    const restaurantData = paginate(sortRest, this.state.currentPage, pageSize);
     if (this.state.isLoading === true) {
       return (
         <div className="ui segment " style={{ background: "inherit" }}>
@@ -58,22 +80,30 @@ class Home extends Component {
         </div>
       );
     }
-    const restaurantLocationData = paginate(
-      restaurantsLocation,
-      this.state.currentPage,
-      pageSize
-    );
     return (
-      <div>
-        <ImagLst
-          restaurants={restaurantData}
-          restaurantsLocation={restaurantLocationData}
-        />
-        <p class="ui horizontal divider header" />
+      <div className="container">
+        <div className="ui grid">
+          <div className="two column row">
+            <div className="column two wide">
+              <CuisinesList
+                items={this.state.Cuisines}
+                selectedItem={this.state.selectedItem}
+                onItemSelect={this.handleItem}
+              />
+            </div>
+            <div className="column fourteen wide">
+              <ImagLst
+                restaurants={restaurantData}
+                restaurantsLocation={restaurantsLocation}
+              />
+            </div>
+          </div>
+        </div>
+        <p className="ui horizontal divider header" />
 
-        <div className="ui centered grid ">
+        <div className="ui centered grid">
           <Pagination
-            itemSize={restaurants.length}
+            itemSize={this.state.sortRest.length}
             pageSize={pageSize}
             onPageChange={this.handlePageChange}
             currentPage={this.state.currentPage}

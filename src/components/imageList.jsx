@@ -16,7 +16,7 @@ const renderImageCard = (restaurantsLocation, restaurants) => {
             <div className="ui cards">
               <ImgCrd
                 restaurantsLocation={restaurant}
-                key={restaurant._id}
+                key={restNames._id}
                 restaurants={restNames}
               />
             </div>

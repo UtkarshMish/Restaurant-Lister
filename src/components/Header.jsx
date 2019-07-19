@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Searchbar from "./common/search";
+
 const Header = () => {
   return (
     <div className="ui inverted menu padded">
@@ -10,10 +12,7 @@ const Header = () => {
       <Link to="/" className="item right">
         Restaurant
       </Link>
-
-      <Link to="/" className="item">
-        Search Restaurant
-      </Link>
+      <Searchbar />
     </div>
   );
 };

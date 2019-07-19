@@ -12,7 +12,7 @@ class restaurantdesc extends Component {
 
     return (
       <React.Fragment>
-        <main className="container">
+        <main className="container ui">
           <div className="cards ui">
             <div className="card ui fluid">
               <div className="image">

@@ -11,7 +11,7 @@ class App extends React.Component {
       <React.Fragment>
         <BrowserRouter>
           <Header />
-          <div className="ui container">
+          <div className="ui">
             <React.Fragment>
               <Switch>
                 <Route path="/" component={Home} className=" item" exact />
