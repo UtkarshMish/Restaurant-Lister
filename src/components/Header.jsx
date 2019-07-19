@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Searchbar from "./common/search";
 
 const Header = () => {
   return (
@@ -12,7 +11,6 @@ const Header = () => {
       <Link to="/" className="item right">
         Restaurant
       </Link>
-      <Searchbar />
     </div>
   );
 };

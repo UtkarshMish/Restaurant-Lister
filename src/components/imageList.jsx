@@ -13,7 +13,7 @@ const renderImageCard = (restaurantsLocation, restaurants) => {
       if (restNames["Restaurant ID"] === restaurant["Restaurant ID"])
         return (
           <React.Fragment>
-            <div className="ui cards">
+            <div className="ui cards" key={restaurant._id}>
               <ImgCrd
                 restaurantsLocation={restaurant}
                 key={restNames._id}

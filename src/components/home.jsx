@@ -5,16 +5,28 @@ import Pagination from "../components/common/pagination";
 import { paginate } from "./utils/paginate";
 import CuisinesList from "./common/cuisinesList";
 import _ from "lodash";
+import Searchbar from "./common/search";
 class Home extends Component {
   state = {
     restaurants: [],
     restaurantsLocation: [],
     sortRest: [],
-    pageSize: 15,
+    pageSize: 6,
     currentPage: 1,
     Cuisines: [],
     selectedItem: "",
     isLoading: true
+  };
+  handleSearch = query => {
+    document.documentElement.scrollTop = 0;
+    let { restaurants, sortRest } = this.state;
+    sortRest = restaurants.filter(
+      restr =>
+        restr["Restaurant Name"].toLowerCase().search(query.toLowerCase()) >= 0
+    );
+    console.log(sortRest);
+
+    this.setState({ sortRest: sortRest, currentPage: 1 });
   };
   handlePageChange = page => {
     document.documentElement.scrollTop = 0;
@@ -81,21 +93,34 @@ class Home extends Component {
       );
     }
     return (
-      <div className="container">
-        <div className="ui grid">
-          <div className="two column row">
-            <div className="column two wide">
-              <CuisinesList
-                items={this.state.Cuisines}
-                selectedItem={this.state.selectedItem}
-                onItemSelect={this.handleItem}
-              />
-            </div>
-            <div className="column fourteen wide">
-              <ImagLst
-                restaurants={restaurantData}
-                restaurantsLocation={restaurantsLocation}
-              />
+      <React.Fragment>
+        <div className="ui  grid">
+          <div className="row " style={{ marginLeft: "3em" }}>
+            <Searchbar onSearch={this.handleSearch} />
+          </div>
+          <div
+            className="ui grid row"
+            style={{
+              marginLeft: "1em"
+            }}
+          >
+            <div
+              className="two column row"
+              style={{ marginBottom: "3em", paddingRight: "0em" }}
+            >
+              <div className="column two wide">
+                <CuisinesList
+                  items={this.state.Cuisines}
+                  selectedItem={this.state.selectedItem}
+                  onItemSelect={this.handleItem}
+                />
+              </div>
+              <div className="column fourteen wide">
+                <ImagLst
+                  restaurants={restaurantData}
+                  restaurantsLocation={restaurantsLocation}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -109,7 +134,7 @@ class Home extends Component {
             currentPage={this.state.currentPage}
           />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

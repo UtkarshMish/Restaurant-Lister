@@ -15,14 +15,6 @@ class App extends React.Component {
             <React.Fragment>
               <Switch>
                 <Route path="/" component={Home} className=" item" exact />
-
-                <Route
-                  path="/"
-                  component={Home}
-                  className="item right active"
-                  exact
-                />
-
                 <Route
                   path="/restaurantdesc"
                   component={restaurantdesc}

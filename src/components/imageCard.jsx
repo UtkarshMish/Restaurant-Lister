@@ -1,5 +1,4 @@
 import React from "react";
-import restaurantdesc from "./restaurantdesc";
 import { Link } from "react-router-dom";
 
 const ImgCrd = ({ restaurantsLocation, restaurants }) => (
@@ -30,7 +29,6 @@ const ImgCrd = ({ restaurantsLocation, restaurants }) => (
       <button className="ui icon  button  red ">
         <Link
           to={{ pathname: "/restaurantdesc", state: { restaurants } }}
-          component={restaurantdesc}
           style={{ color: "white" }}
         >
           Order Online from this Restaurant!

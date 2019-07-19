@@ -4,7 +4,7 @@ const CuisinesList = props => {
 
   return (
     <div className="column">
-      <div className="ui segments">
+      <div className="ui segments" style={{ overflow: "auto", maxHeight: 780 }}>
         <div className="ui segment" style={{ backgroundColor: "#099" }}>
           <h5 style={{ color: "black" }}>Categories</h5>
         </div>

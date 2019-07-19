@@ -10,9 +10,9 @@ const Pagination = props => {
       className="ui pagination menu"
       style={{
         backgroundColor: "#000000",
-        marginRight: "200px",
-        paddingLeft: "inherit",
-        paddingRight: "inherit"
+        marginRight: "5em",
+        paddingLeft: "0em",
+        paddingRight: "0em"
       }}
     >
       {pages.map(page => {
