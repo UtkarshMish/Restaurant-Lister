@@ -102,7 +102,7 @@ class Home extends Component {
             }}
           >
             <div
-              className="two row coloumn "
+              className="ui two column grid "
               style={{ marginBottom: "3em", paddingRight: "0em" }}
             >
               <div className="column two wide">

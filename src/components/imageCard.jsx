@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ImgCrd = ({ restaurantsLocation, restaurants }) => (
   <div
-    className="ui card "
+    className="  card "
     style={{ backgroundColor: "#43476B", color: "white" }}
   >
     <img

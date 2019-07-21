@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const CuisinesList = props => {
   const { items, onItemSelect, selectedItem } = props;
 
   return (
-    <div className="column">
+    <div className="ui column">
       <div
         className="ui segment"
         style={{
@@ -21,7 +22,8 @@ const CuisinesList = props => {
               backgroundColor: item === selectedItem ? "red" : "#e6f2ff"
             }}
           >
-            <p
+            <Link
+              to="/"
               className={item === selectedItem ? "ui active red" : "ui "}
               style={{
                 color: "Black",
@@ -30,7 +32,7 @@ const CuisinesList = props => {
               onClick={() => onItemSelect(item)}
             >
               {item}
-            </p>
+            </Link>
           </div>
         ))}
       </div>
