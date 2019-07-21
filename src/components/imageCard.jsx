@@ -26,14 +26,13 @@ const ImgCrd = ({ restaurantsLocation, restaurants }) => (
       <div className="description " style={{ color: "white" }}>
         <p>Address : {restaurantsLocation.Address}</p>
       </div>
-      <button className="ui icon  button  red ">
-        <Link
-          to={{ pathname: "/restaurantdesc", state: { restaurants } }}
-          style={{ color: "white" }}
-        >
-          Order Online from this Restaurant!
-        </Link>
-      </button>
+      <Link
+        className="ui icon  button  red "
+        to={`/restaurantdesc/${restaurants["Restaurant ID"]}`}
+        style={{ color: "white" }}
+      >
+        Order Online from {restaurants["Restaurant Name"]}!
+      </Link>
     </div>
   </div>
 );

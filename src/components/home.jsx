@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ImagLst from "./imageList";
-import axios from "axios";
+import { getRestaurants, getRestaurantsLocation } from "./restdata";
 import Pagination from "../components/common/pagination";
 import { paginate } from "./utils/paginate";
 import CuisinesList from "./common/cuisinesList";
@@ -24,7 +24,6 @@ class Home extends Component {
       restr =>
         restr["Restaurant Name"].toLowerCase().search(query.toLowerCase()) >= 0
     );
-    console.log(sortRest);
 
     this.setState({ sortRest: sortRest, currentPage: 1 });
   };
@@ -34,8 +33,6 @@ class Home extends Component {
     currentPage = page;
     this.setState({ currentPage: currentPage });
   };
-  getRestaurants = () => axios.get("/api/restaurants");
-  getRestaurantsLocation = () => axios.get("/api/restaurantLocation");
   getCuisines = res => {
     return res.map(restData => {
       return restData["Cuisines"].split(", ");
@@ -43,12 +40,12 @@ class Home extends Component {
   };
 
   async componentDidMount() {
-    const response = await this.getRestaurants();
-    const responseloc = await this.getRestaurantsLocation();
-    let { Cuisines } = this.state;
+    const response = await getRestaurants();
+    const responseloc = await getRestaurantsLocation();
+    let { Cuisines, currentPage } = this.state;
     Cuisines = await this.getCuisines(response.data);
     Cuisines = Cuisines.flat(1);
-
+    if (this.props.match.params.id) currentPage = this.props.match.params.id;
     Cuisines = _.uniq(Cuisines);
     Cuisines.splice(Cuisines.indexOf(""), 1);
     this.setState({
@@ -56,14 +53,14 @@ class Home extends Component {
       restaurantsLocation: responseloc.data,
       sortRest: response.data,
       Cuisines: Cuisines,
-      isLoading: false
+      isLoading: false,
+      currentPage: currentPage
     });
   }
   handleItem = item => {
     document.documentElement.scrollTop = 0;
     let { restaurants, sortRest } = this.state;
     sortRest = restaurants.filter(restr => restr["Cuisines"].search(item) >= 0);
-    console.log(sortRest);
 
     this.setState({ selectedItem: item, sortRest: sortRest, currentPage: 1 });
   };
@@ -74,7 +71,7 @@ class Home extends Component {
     const restaurantData = paginate(sortRest, this.state.currentPage, pageSize);
     if (this.state.isLoading === true) {
       return (
-        <div className="ui segment " style={{ background: "inherit" }}>
+        <div className="ui segment" style={{ background: "inherit" }}>
           <div
             className="ui active dimmer "
             style={{
@@ -99,13 +96,13 @@ class Home extends Component {
             <Searchbar onSearch={this.handleSearch} />
           </div>
           <div
-            className="ui grid row"
+            className="ui grid row "
             style={{
               marginLeft: "1em"
             }}
           >
             <div
-              className="two column row"
+              className="two row coloumn "
               style={{ marginBottom: "3em", paddingRight: "0em" }}
             >
               <div className="column two wide">

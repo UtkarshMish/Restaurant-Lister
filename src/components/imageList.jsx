@@ -2,7 +2,7 @@ import React from "react";
 import ImgCrd from "./imageCard";
 
 const ImagLst = ({ restaurantsLocation, restaurants }) => (
-  <div className="ui four coloumn grid padded ">
+  <div className="ui three column stackable grid padded ">
     {renderImageCard(restaurantsLocation, restaurants)}
   </div>
 );
@@ -12,11 +12,10 @@ const renderImageCard = (restaurantsLocation, restaurants) => {
     return restaurants.map(restNames => {
       if (restNames["Restaurant ID"] === restaurant["Restaurant ID"])
         return (
-          <React.Fragment>
-            <div className="ui cards" key={restaurant._id}>
+          <React.Fragment key={restaurant._id}>
+            <div className="ui columns cards">
               <ImgCrd
                 restaurantsLocation={restaurant}
-                key={restNames._id}
                 restaurants={restNames}
               />
             </div>

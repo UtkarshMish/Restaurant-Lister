@@ -1,7 +1,10 @@
 import React from "react";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 const Pagination = props => {
-  const { itemSize, pageSize, onPageChange, currentPage } = props;
+  const { itemSize, pageSize, onPageChange } = props;
+  let { currentPage } = props;
+  currentPage = parseInt(currentPage);
   const pageCount = Math.ceil(itemSize / pageSize);
   if (pageCount === 1) return null;
   const pages = _.range(1, pageCount + 1);
@@ -21,14 +24,15 @@ const Pagination = props => {
             ? { backgroundColor: "White", color: "#ff0000" }
             : { color: "#ff0000" };
         return (
-          <a
+          <Link
+            to={`/${page}`}
             key={page}
             className={page === currentPage ? "active item" : "item"}
             onClick={() => onPageChange(page)}
             style={mystyle}
           >
             {page}
-          </a>
+          </Link>
         );
       })}
     </div>
