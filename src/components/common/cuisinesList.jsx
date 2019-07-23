@@ -6,28 +6,36 @@ const CuisinesList = props => {
   return (
     <div className="ui column">
       <div
-        className="ui segment"
+        className="ui segment pusher"
         style={{
           backgroundColor: "#099"
         }}
       >
         <h5 style={{ color: "black" }}>Categories</h5>
       </div>
-      <div className="ui segments" style={{ overflow: "auto", maxHeight: 780 }}>
+      <div
+        className="ui segments"
+        style={{ overflow: "auto", height: "650px" }}
+      >
         {items.map(item => (
           <div
-            className="ui segment"
-            key={item}
-            style={{
-              backgroundColor: item === selectedItem ? "red" : "#e6f2ff"
-            }}
+            className="segment item ui"
+            style={{ margin: "0em", padding: "0em", background: "inherit" }}
           >
             <Link
               to="/"
-              className={item === selectedItem ? "ui active red" : "ui "}
+              className={
+                item === selectedItem
+                  ? "ui icon button red item"
+                  : "ui icon button light"
+              }
               style={{
                 color: "Black",
-                cursor: "pointer"
+                cursor: "pointer",
+                width: "auto",
+                display: "grid",
+                borderRadius: "0",
+                lineHeight: "2em"
               }}
               onClick={() => onItemSelect(item)}
             >

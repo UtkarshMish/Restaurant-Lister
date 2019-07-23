@@ -14,7 +14,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/:id?" component={Home} className=" item" exact />
             <Route
-              path="/restaurantdesc/:id"
+              path="/restaurantdesc/:id/:tab?"
               component={restaurantdesc}
               className=" item"
             />

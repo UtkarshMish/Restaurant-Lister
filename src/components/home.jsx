@@ -48,6 +48,7 @@ class Home extends Component {
     if (this.props.match.params.id) currentPage = this.props.match.params.id;
     Cuisines = _.uniq(Cuisines);
     Cuisines.splice(Cuisines.indexOf(""), 1);
+    Cuisines = _.sortBy(Cuisines);
     this.setState({
       restaurants: response.data,
       restaurantsLocation: responseloc.data,

@@ -16,7 +16,7 @@ class Searchbar extends Component {
               className="prompt"
               type="text"
               value={this.state.value}
-              onChange={this.handleChange}
+              onInput={this.handleChange}
               placeholder="Search Restaurants..."
             />
             <i className="search icon" />

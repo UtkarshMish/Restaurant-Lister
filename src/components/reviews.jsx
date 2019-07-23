@@ -1,10 +1,16 @@
 import React from "react";
-const Reviews = () => {
-  return (
-    <div className="container">
-      <h6 className="item">No Reviews</h6>
-    </div>
-  );
+import Rating from "./common/rating";
+const Reviews = ({ restaurantData }) => {
+  if (restaurantData["Aggregate rating"])
+    return (
+      <div className="container">
+        <Rating
+          ratingColor={restaurantData["Rating color"]}
+          ratingText={restaurantData["Rating text"]}
+          aggregate={restaurantData["Aggregate rating"]}
+        />
+      </div>
+    );
+  return null;
 };
-
 export default Reviews;
