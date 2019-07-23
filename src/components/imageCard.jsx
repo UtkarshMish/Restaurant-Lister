@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Rating from "./common/rating";
 
 const ImgCrd = ({ restaurantsLocation, restaurants }) => (
   <div
@@ -12,7 +13,11 @@ const ImgCrd = ({ restaurantsLocation, restaurants }) => (
       alt="Restaurant Logo"
     />
     <div className="header">
-      <p> Ratings : {restaurants["Aggregate rating"]} stars</p>
+      <Rating
+        ratingColor={restaurants["Rating color"]}
+        ratingText={restaurants["Rating text"]}
+        aggregate={restaurants["Aggregate rating"]}
+      />
     </div>
     <div className="content ui">
       <h4>Name : {restaurants["Restaurant Name"]}</h4>
@@ -20,16 +25,16 @@ const ImgCrd = ({ restaurantsLocation, restaurants }) => (
         <strong>Cuisine : {restaurants["Cuisines"]}</strong>
       </p>
 
-      <div className="meta" style={{ color: "white" }}>
+      <div className="meta" id="meta">
         <p>City : {restaurantsLocation.City} </p>
       </div>
-      <div className="description " style={{ color: "white" }}>
+      <div className="description " id="meta">
         <p>Address : {restaurantsLocation.Address}</p>
       </div>
       <Link
         className="ui icon  button  red "
         to={`/restaurantdesc/${restaurants["Restaurant ID"]}`}
-        style={{ color: "white" }}
+        id="meta"
       >
         Order Online from {restaurants["Restaurant Name"]}!
       </Link>

@@ -9,15 +9,7 @@ const Pagination = props => {
   if (pageCount === 1) return null;
   const pages = _.range(1, pageCount + 1);
   return (
-    <div
-      className="ui pagination menu"
-      style={{
-        backgroundColor: "#000000",
-        marginRight: "5em",
-        paddingLeft: "0em",
-        paddingRight: "0em"
-      }}
-    >
+    <div className="ui pagination menu" id="paginate">
       {pages.map(page => {
         const mystyle =
           page === currentPage

@@ -1,3 +1,6 @@
+.ui.grid {
+  padding: 1em;
+}
 #root {
   background: url(https://images.alphacoders.com/688/688200.jpg);
   color: deepskyblue;
@@ -7,4 +10,58 @@
   height: 100;
   padding-bottom: 20px;
   border: 1px solid transparent;
+}
+#aggregate {
+  background-color: inherit;
+  color: aquamarine;
+}
+#dimmer {
+  position: sticky;
+  height: 40em;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: inherit;
+}
+#load {
+  background: inherit;
+}
+#search {
+  margin-left: 3em;
+}
+#list {
+  margin-bottom: 3em;
+  padding-right: 0em;
+}
+#mrg {
+  margin-left: 1em;
+}
+#meta {
+  color: white;
+}
+#renderList {
+  margin: 0em;
+  padding: 0em;
+  background-color: inherit;
+}
+#btnLst {
+  color: Black;
+  cursor: pointer;
+  width: auto;
+  display: grid;
+  border-radius: 0;
+  line-height: 2em;
+}
+#rndrcard {
+  display: contents;
+}
+#restDetails {
+  color: black;
+}
+#paginate {
+  background-color: #000000;
+  margin-right: 5em;
+  padding-left: 0em;
+  padding-right: 0em;
 }

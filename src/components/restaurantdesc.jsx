@@ -39,7 +39,7 @@ class restaurantdesc extends Component {
                 />
               </div>
               <div className="container">
-                <h2 className="header" style={{ color: "black" }}>
+                <h2 className="header" id="restDetails">
                   {restaurantData["Restaurant Name"]}
                 </h2>
                 <div className="meta">

@@ -72,19 +72,8 @@ class Home extends Component {
     const restaurantData = paginate(sortRest, this.state.currentPage, pageSize);
     if (this.state.isLoading === true) {
       return (
-        <div className="ui segment" style={{ background: "inherit" }}>
-          <div
-            className="ui active dimmer "
-            style={{
-              position: "sticky",
-              height: "40em",
-              top: "0",
-              left: "0",
-              bottom: "0",
-              right: "0",
-              background: "inherit"
-            }}
-          >
+        <div className="ui segment " id="load">
+          <div className="ui active dimmer " id="dimmer">
             <div className="ui indeterminate text loader ">Preparing Files</div>
           </div>
         </div>
@@ -93,19 +82,11 @@ class Home extends Component {
     return (
       <React.Fragment>
         <div className="ui  grid">
-          <div className="row " style={{ marginLeft: "3em" }}>
+          <div className="row " id="search">
             <Searchbar onSearch={this.handleSearch} />
           </div>
-          <div
-            className="ui grid row "
-            style={{
-              marginLeft: "1em"
-            }}
-          >
-            <div
-              className="ui two column grid "
-              style={{ marginBottom: "3em", paddingRight: "0em" }}
-            >
+          <div className="ui grid row" id="mrg">
+            <div className="ui two column grid " id="list">
               <div className="column two wide">
                 <CuisinesList
                   items={this.state.Cuisines}

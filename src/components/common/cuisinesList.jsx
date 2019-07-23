@@ -18,25 +18,15 @@ const CuisinesList = props => {
         style={{ overflow: "auto", height: "650px" }}
       >
         {items.map(item => (
-          <div
-            className="segment item ui"
-            style={{ margin: "0em", padding: "0em", background: "inherit" }}
-          >
+          <div key={item} className="segment item ui" id="renderList">
             <Link
               to="/"
+              id="btnLst"
               className={
                 item === selectedItem
                   ? "ui icon button red item"
                   : "ui icon button light"
               }
-              style={{
-                color: "Black",
-                cursor: "pointer",
-                width: "auto",
-                display: "grid",
-                borderRadius: "0",
-                lineHeight: "2em"
-              }}
               onClick={() => onItemSelect(item)}
             >
               {item}
