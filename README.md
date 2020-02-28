@@ -1,6 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Restaurant Manager
 
-## Available Scripts
+The Restaurant Manager is a React Web Application which lists the Restaurant's with the different food categories.
+
+## Requirements
+
+1.) Node.js based on the OS and architecture.
+2.) Restaurant Server
+
+## Steps to Initialize Project
 
 In the project directory, you can run:
 
